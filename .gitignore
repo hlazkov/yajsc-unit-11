@@ -68,6 +68,8 @@ web_modules/
 # dotenv environment variable files
 .env
 .env.*
+.env.dev
+.env.stage
 !.env.example
 
 # parcel-bundler cache (https://parceljs.org/)
@@ -144,3 +146,6 @@ vite.config.ts.timestamp-*
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+
+/playwright/.auth/user.json
+tests/playwright/.auth/user.json
