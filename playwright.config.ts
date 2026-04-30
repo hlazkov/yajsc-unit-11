@@ -26,17 +26,28 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('')`. */
-    baseURL: 'https://www.learnaqa.info',
+    baseURL: 'https://www.saucedemo.com/',
+
+    headless: false,
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+
+    testIdAttribute: 'data-test',
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
+      name: 'auth',
+      testMatch: /auth/,
+    },
+
+    {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      testMatch: /ui-tests/,
+      dependencies: ['auth'],
+      use: { storageState: 'playwright/.auth/user.json', ...devices['Desktop Chrome'] },
     },
 
     // {
